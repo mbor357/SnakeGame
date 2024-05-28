@@ -8,8 +8,8 @@
 
         public GameConfig()
         {
-            AreaHeight = 10;
-            AreaWidth = 10;
+            AreaHeight = 16;
+            AreaWidth = 32;
             GameDifficulty = Difficulty.Easy;
         }
     }
