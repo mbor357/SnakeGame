@@ -1,4 +1,6 @@
-﻿namespace SnakeGame.Helpers
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace SnakeGame.Helpers
 {
     public static class Utilities
     {
@@ -13,6 +15,25 @@
                 else Console.Write(" ");
 
                 Console.WriteLine(option.Name);
+            }
+        }
+
+        public static void DrawBoundaries(int arenaHeight, int arenaWidth)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            for (int i = 0; i < arenaWidth; i++)
+            {
+                Console.SetCursorPosition(i, 0);
+                Console.Write("■");
+                Console.SetCursorPosition(i, arenaHeight - 1);
+                Console.Write("■");
+            }
+            for (int i = 0; i < arenaHeight; i++)
+            {
+                Console.SetCursorPosition(0, i);
+                Console.Write("■");
+                Console.SetCursorPosition(arenaWidth - 1, i);
+                Console.Write("■");
             }
         }
     }
