@@ -7,10 +7,13 @@ namespace SnakeGame
     {
         public static void Run(GameConfig gameConfig)
         {
+            Snake snake = new Snake(gameConfig.AreaWidth, gameConfig.AreaHeight);
+
             while (true)
             {
                 Console.Clear();
                 Utilities.DrawBoundaries(gameConfig.AreaHeight, gameConfig.AreaWidth);
+                Utilities.DrawSnake(snake);
                 Console.ReadKey();
                 break;
             }
