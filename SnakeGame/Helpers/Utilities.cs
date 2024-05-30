@@ -120,5 +120,26 @@ namespace SnakeGame.Helpers
                 snake.SnakeBody.RemoveAt(snake.SnakeBody.Count - 1);
             }
         }
+
+        public static void GameOver(int arenaWidth, int arenaHeight, int score)
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(arenaWidth / 5, 1);
+            Console.WriteLine("Koniec gry!");
+            Console.SetCursorPosition(arenaWidth / 5, 2);
+            Console.WriteLine("Twój wynik: " + score);
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.SetCursorPosition(arenaWidth / 5, 3);
+                Console.WriteLine("                                               ");
+                Console.SetCursorPosition(arenaWidth / 5, 4);
+                Console.WriteLine("Powrót do menu za " + (5 - i));
+                Thread.Sleep(1000);
+            }
+
+            Console.ResetColor();
+        }
     }
 }

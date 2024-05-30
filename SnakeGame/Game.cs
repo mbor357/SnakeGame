@@ -52,9 +52,10 @@ namespace SnakeGame
                 Utilities.DrawSnake(snake);
                 Utilities.MoveSnake(snake, direction);
                 Utilities.CheckFoodEaten(snake, ref food, ref scores);
-
                 Thread.Sleep(100);
             }
+
+            Utilities.GameOver(gameConfig.AreaHeight, gameConfig.AreaWidth, scores);
         }
     }
 }
