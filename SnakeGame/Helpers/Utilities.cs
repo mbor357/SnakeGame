@@ -67,5 +67,54 @@ namespace SnakeGame.Helpers
 
             snake.SnakeBody.Insert(0, newHeadPosition);
         }
+
+        public static void DrawScores(int scores, int arenaHeight)
+        {
+            Console.SetCursorPosition(0, arenaHeight + 1);
+            Console.Write("Punkty: " + scores);
+        }
+
+        public static void DrawFood(Snake snake, ref Pixel? food, int arenaHeight, int arenaWidth)
+        {
+            Random random = new Random();
+
+            if (food == null)
+            {
+                Pixel newFood = new Pixel();
+                newFood.X = random.Next(2, arenaWidth - 2);
+                newFood.Y = random.Next(1, arenaHeight - 1);
+
+                while (snake.SnakeBody.Exists(snakeBody =>
+                    (snakeBody.X == newFood.X && snakeBody.Y == newFood.Y))
+                    || newFood.X % 2 != 0)
+                {
+                    newFood.X = random.Next(2, arenaWidth - 2);
+                    newFood.Y = random.Next(1, arenaHeight - 1);
+                }
+
+                food = newFood;
+            }
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(food.X, food.Y);
+            Console.Write("██");
+
+            Console.ResetColor();
+        }
+
+        public static void CheckFoodEaten(Snake snake, ref Pixel? food, ref int scores)
+        {
+            Pixel snakeHead = snake.SnakeBody[0];
+
+            if (snakeHead.X == food.X && snakeHead.Y == food.Y)
+            {
+                scores++;
+                food = null;
+            }
+            else
+            {
+                snake.SnakeBody.RemoveAt(snake.SnakeBody.Count - 1);
+            }
+        }
     }
 }

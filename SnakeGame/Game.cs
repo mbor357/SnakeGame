@@ -10,12 +10,15 @@ namespace SnakeGame
         {
             Snake snake = new Snake(gameConfig.AreaWidth, gameConfig.AreaHeight);
             Direction direction = Direction.Left;
+            Pixel? food = null;
+            int scores = 0;
 
             while (true)
             {
                 Console.Clear();
                 Utilities.DrawBoundaries(gameConfig.AreaHeight, gameConfig.AreaWidth);
-                Utilities.DrawSnake(snake);
+                Utilities.DrawScores(scores, gameConfig.AreaHeight);
+                Utilities.DrawFood(snake, ref food, gameConfig.AreaHeight, gameConfig.AreaWidth);
 
                 if (Console.KeyAvailable)
                 {
@@ -29,7 +32,9 @@ namespace SnakeGame
                     }
                 }
 
+                Utilities.DrawSnake(snake);
                 Utilities.MoveSnake(snake, direction);
+                Utilities.CheckFoodEaten(snake, ref food, ref scores);
 
                 Thread.Sleep(100);
             }
