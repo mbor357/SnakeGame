@@ -74,19 +74,25 @@ namespace SnakeGame.Helpers
             Console.Write("Punkty: " + scores);
         }
 
-        public static Pixel DrawFood(Snake snake, int arenaHeight, int arenaWidth)
+        public static void DrawFood(Snake snake, ref Pixel? food, int arenaHeight, int arenaWidth)
         {
             Random random = new Random();
 
-            Pixel food = new Pixel();
-
-            food.X = random.Next(2, arenaWidth);
-            food.Y = random.Next(1, arenaHeight);
-
-            while (snake.SnakeBody.Any(x => x == food))
+            if (food == null)
             {
-                food.X = random.Next(0, arenaWidth);
-                food.Y = random.Next(0, arenaHeight);
+                Pixel newFood = new Pixel();
+                newFood.X = random.Next(2, arenaWidth - 2);
+                newFood.Y = random.Next(1, arenaHeight - 1);
+
+                while (snake.SnakeBody.Exists(snakeBody =>
+                    (snakeBody.X == newFood.X && snakeBody.Y == newFood.Y))
+                    || newFood.X % 2 != 0)
+                {
+                    newFood.X = random.Next(2, arenaWidth - 2);
+                    newFood.Y = random.Next(1, arenaHeight - 1);
+                }
+
+                food = newFood;
             }
 
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -94,8 +100,21 @@ namespace SnakeGame.Helpers
             Console.Write("██");
 
             Console.ResetColor();
+        }
 
-            return new Pixel();
+        public static void CheckFoodEaten(Snake snake, ref Pixel? food, ref int scores)
+        {
+            Pixel snakeHead = snake.SnakeBody[0];
+
+            if (snakeHead.X == food.X && snakeHead.Y == food.Y)
+            {
+                scores++;
+                food = null;
+            }
+            else
+            {
+                snake.SnakeBody.RemoveAt(snake.SnakeBody.Count - 1);
+            }
         }
     }
 }
