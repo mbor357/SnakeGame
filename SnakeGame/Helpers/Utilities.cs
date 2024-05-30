@@ -33,7 +33,7 @@ namespace SnakeGame.Helpers
             {
                 Console.SetCursorPosition(0, i);
                 Console.Write("██");
-                Console.SetCursorPosition(arenaWidth - 1, i);
+                Console.SetCursorPosition(arenaWidth - 2, i);
                 Console.Write("██");
             }
         }
@@ -49,7 +49,7 @@ namespace SnakeGame.Helpers
             Console.ResetColor();
         }
 
-        public static void MoveSnake(Snake snake, Direction direction)
+        public static bool MoveSnake(Snake snake, Direction direction)
         {
             Pixel newHeadPosition = new Pixel()
             {
@@ -65,7 +65,13 @@ namespace SnakeGame.Helpers
                 case Direction.Right: newHeadPosition.X = newHeadPosition.X + 2; break;
             }
 
+            if (snake.SnakeBody.Exists(x => x.X == newHeadPosition.X && x.Y == newHeadPosition.Y))
+            {
+                return true;
+            }
+
             snake.SnakeBody.Insert(0, newHeadPosition);
+            return false;
         }
 
         public static void DrawScores(int scores, int arenaHeight)
@@ -102,6 +108,17 @@ namespace SnakeGame.Helpers
             Console.ResetColor();
         }
 
+        public static bool CollisionWithBoundaries(Snake snake, int arenaWidth, int arenaHeight)
+        {
+            if (snake.SnakeBody[0].X == 0 || snake.SnakeBody[0].X == arenaWidth - 2
+                || snake.SnakeBody[0].Y == 0 || snake.SnakeBody[0].Y == arenaHeight - 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public static void CheckFoodEaten(Snake snake, ref Pixel? food, ref int scores)
         {
             Pixel snakeHead = snake.SnakeBody[0];
@@ -119,6 +136,27 @@ namespace SnakeGame.Helpers
 
                 snake.SnakeBody.RemoveAt(snake.SnakeBody.Count - 1);
             }
+        }
+
+        public static void GameOver(int arenaWidth, int arenaHeight, int score)
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(arenaWidth / 5, 1);
+            Console.WriteLine("Koniec gry!");
+            Console.SetCursorPosition(arenaWidth / 5, 2);
+            Console.WriteLine("Twój wynik: " + score);
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.SetCursorPosition(arenaWidth / 5, 3);
+                Console.WriteLine("                                               ");
+                Console.SetCursorPosition(arenaWidth / 5, 4);
+                Console.WriteLine("Powrót do menu za " + (3 - i));
+                Thread.Sleep(1000);
+            }
+
+            Console.ResetColor();
         }
     }
 }

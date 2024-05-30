@@ -1,4 +1,6 @@
-﻿namespace SnakeGame.Models
+﻿using SnakeGame.Enumes;
+
+namespace SnakeGame.Models
 {
     public class GameConfig
     {
@@ -12,12 +14,5 @@
             AreaWidth = 32;
             GameDifficulty = Difficulty.Easy;
         }
-    }
-
-    public enum Difficulty
-    {
-        Easy = 0,
-        Medium = 1,
-        Hard = 2
     }
 }
