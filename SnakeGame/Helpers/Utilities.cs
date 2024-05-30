@@ -33,7 +33,7 @@ namespace SnakeGame.Helpers
             {
                 Console.SetCursorPosition(0, i);
                 Console.Write("██");
-                Console.SetCursorPosition(arenaWidth - 1, i);
+                Console.SetCursorPosition(arenaWidth - 2, i);
                 Console.Write("██");
             }
         }
@@ -102,6 +102,17 @@ namespace SnakeGame.Helpers
             Console.ResetColor();
         }
 
+        public static bool CollisionWithBoundaries(Snake snake, int arenaWidth, int arenaHeight)
+        {
+            if (snake.SnakeBody[0].X == 0 || snake.SnakeBody[0].X == arenaWidth - 2
+                || snake.SnakeBody[0].Y == 0 || snake.SnakeBody[0].Y == arenaHeight - 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public static void CheckFoodEaten(Snake snake, ref Pixel? food, ref int scores)
         {
             Pixel snakeHead = snake.SnakeBody[0];
@@ -130,12 +141,12 @@ namespace SnakeGame.Helpers
             Console.SetCursorPosition(arenaWidth / 5, 2);
             Console.WriteLine("Twój wynik: " + score);
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Console.SetCursorPosition(arenaWidth / 5, 3);
                 Console.WriteLine("                                               ");
                 Console.SetCursorPosition(arenaWidth / 5, 4);
-                Console.WriteLine("Powrót do menu za " + (5 - i));
+                Console.WriteLine("Powrót do menu za " + (3 - i));
                 Thread.Sleep(1000);
             }
 
