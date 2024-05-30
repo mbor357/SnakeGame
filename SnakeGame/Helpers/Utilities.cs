@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using SnakeGame.Models;
 
 namespace SnakeGame.Helpers
 {
@@ -35,6 +35,17 @@ namespace SnakeGame.Helpers
                 Console.SetCursorPosition(arenaWidth - 1, i);
                 Console.Write("■");
             }
+        }
+
+        public static void DrawSnake(Snake snake)
+        {
+            foreach (var segment in snake.SnakeBody)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.SetCursorPosition(segment.X, segment.Y);
+                Console.Write("■");
+            }
+            Console.ResetColor();
         }
     }
 }

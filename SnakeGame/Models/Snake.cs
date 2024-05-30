@@ -6,15 +6,23 @@
 
         public Snake(int areaWidth, int areaHeight)
         {
-            SnakeBody = new List<Pixel>();
-
-            Pixel head = new Pixel
-            {
-                X = areaWidth / 2,
-                Y = areaHeight / 2
+            SnakeBody = new List<Pixel>(){
+                new Pixel // head
+                {
+                    X = areaWidth / 2,
+                    Y = areaHeight / 2
+                },
+                new Pixel // body 1
+                {
+                    X = (areaWidth / 2) + 1,
+                    Y = (areaHeight / 2)
+                },
+                new Pixel // body 2
+                {
+                    X = (areaWidth / 2) + 2,
+                    Y = (areaHeight / 2)
+                }
             };
-
-            SnakeBody.Add(head);
         }
     }
 }
