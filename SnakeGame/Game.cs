@@ -16,8 +16,8 @@ namespace SnakeGame
             {
                 Console.Clear();
                 Utilities.DrawBoundaries(gameConfig.AreaHeight, gameConfig.AreaWidth);
-                //Utilities.DrawScores(scores);
-                //Utilities.DrawFood(snake, gameConfig.AreaHeight, gameConfig.AreaWidth);
+                Utilities.DrawScores(scores, gameConfig.AreaHeight);
+                Utilities.DrawFood(snake, gameConfig.AreaHeight, gameConfig.AreaWidth);
                 Utilities.DrawSnake(snake);
 
                 if (Console.KeyAvailable)

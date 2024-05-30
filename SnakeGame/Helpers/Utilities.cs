@@ -68,9 +68,9 @@ namespace SnakeGame.Helpers
             snake.SnakeBody.Insert(0, newHeadPosition);
         }
 
-        public static void DrawScores(int scores)
+        public static void DrawScores(int scores, int arenaHeight)
         {
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(0, arenaHeight + 1);
             Console.Write("Punkty: " + scores);
         }
 
