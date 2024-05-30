@@ -5,9 +5,9 @@ using SnakeGame.Models;
 int index = 0;
 List<Option> options = new List<Option>()
 {
-    new Option("Start", () => Game.Run(new GameConfig())), // Rozpoczyna się gra
-    new Option("Ustawienia gry", () => Console.WriteLine("\nWybrano 'Ustawienia gry'")), // Ustawienia wielkości planszy, poziom trudności, szybkość węża
-    new Option("Zakończ grę", () => Environment.Exit(0)) // Wyjście z gry
+    new Option("Start", () => Game.Run(new GameConfig())), // Start game
+    new Option("Ustawienia gry", () => Console.WriteLine("\nWybrano 'Ustawienia gry'")), // Board size settings, difficulty level, snake speed
+    new Option("Zakończ grę", () => Environment.Exit(0)) // Exit
 };
 
 Utilities.WriteOptionsSelect(options, options[index], "Używając strzałek wybierz opcję:\n");
