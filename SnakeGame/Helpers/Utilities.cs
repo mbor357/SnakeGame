@@ -51,8 +51,8 @@ namespace SnakeGame.Helpers
 
         public static void MoveSnake(Snake snake, Direction direction)
         {
-            Pixel newHeadPosition = new Pixel() 
-            { 
+            Pixel newHeadPosition = new Pixel()
+            {
                 X = snake.SnakeBody[0].X,
                 Y = snake.SnakeBody[0].Y,
             };
@@ -113,6 +113,10 @@ namespace SnakeGame.Helpers
             }
             else
             {
+                Pixel removeTile = snake.SnakeBody[snake.SnakeBody.Count - 1];
+                Console.SetCursorPosition(removeTile.X, removeTile.Y);
+                Console.Write("  ");
+
                 snake.SnakeBody.RemoveAt(snake.SnakeBody.Count - 1);
             }
         }
