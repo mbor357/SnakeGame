@@ -43,7 +43,7 @@ namespace SnakeGame.Helpers
             {
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.SetCursorPosition(segment.X, segment.Y);
-                Console.Write("■");
+                Console.Write("██");
             }
             Console.ResetColor();
         }
