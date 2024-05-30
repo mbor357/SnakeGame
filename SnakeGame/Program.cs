@@ -16,18 +16,10 @@ ConsoleKeyInfo keyinfo;
 do
 {
     keyinfo = Console.ReadKey();
-    if (keyinfo.Key == ConsoleKey.DownArrow && index + 1 < options.Count)
-    {
-        index++;
-        Utilities.WriteOptionsSelect(options, options[index], "Używając strzałek wybierz opcję:\n");
-    }
-    if (keyinfo.Key == ConsoleKey.UpArrow && index - 1 >= 0)
-    {
-        index--;
-        Utilities.WriteOptionsSelect(options, options[index], "Używając strzałek wybierz opcję:\n");
-    }
-    if (keyinfo.Key == ConsoleKey.Enter)
-    {
-        options[index].Selected.Invoke();
-    }
+
+    if (keyinfo.Key == ConsoleKey.DownArrow && index + 1 < options.Count) index++;
+    else if (keyinfo.Key == ConsoleKey.UpArrow && index - 1 >= 0) index--;
+    else if (keyinfo.Key == ConsoleKey.Enter) options[index].Selected.Invoke();
+
+    Utilities.WriteOptionsSelect(options, options[index], "Używając strzałek wybierz opcję:\n");
 } while (true);
