@@ -1,4 +1,5 @@
-﻿using SnakeGame.Models;
+﻿using SnakeGame.Enumes;
+using SnakeGame.Models;
 
 namespace SnakeGame.Helpers
 {
@@ -46,6 +47,25 @@ namespace SnakeGame.Helpers
                 Console.Write("██");
             }
             Console.ResetColor();
+        }
+
+        public static void MoveSnake(Snake snake, Direction direction)
+        {
+            Pixel newHeadPosition = new Pixel() 
+            { 
+                X = snake.SnakeBody[0].X,
+                Y = snake.SnakeBody[0].Y,
+            };
+
+            switch (direction)
+            {
+                case Direction.Up: newHeadPosition.Y--; break;
+                case Direction.Down: newHeadPosition.Y++; break;
+                case Direction.Left: newHeadPosition.X = newHeadPosition.X - 2; break;
+                case Direction.Right: newHeadPosition.X = newHeadPosition.X + 2; break;
+            }
+
+            snake.SnakeBody.Insert(0, newHeadPosition);
         }
     }
 }
