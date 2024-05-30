@@ -49,7 +49,7 @@ namespace SnakeGame.Helpers
             Console.ResetColor();
         }
 
-        public static void MoveSnake(Snake snake, Direction direction)
+        public static bool MoveSnake(Snake snake, Direction direction)
         {
             Pixel newHeadPosition = new Pixel()
             {
@@ -65,7 +65,13 @@ namespace SnakeGame.Helpers
                 case Direction.Right: newHeadPosition.X = newHeadPosition.X + 2; break;
             }
 
+            if (snake.SnakeBody.Exists(x => x.X == newHeadPosition.X && x.Y == newHeadPosition.Y))
+            {
+                return true;
+            }
+
             snake.SnakeBody.Insert(0, newHeadPosition);
+            return false;
         }
 
         public static void DrawScores(int scores, int arenaHeight)

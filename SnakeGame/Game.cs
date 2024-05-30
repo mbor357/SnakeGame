@@ -49,12 +49,12 @@ namespace SnakeGame
                     }
                 }
 
-                Utilities.MoveSnake(snake, direction);
+                if (Utilities.MoveSnake(snake, direction) || Utilities.CollisionWithBoundaries(snake, gameConfig.AreaWidth, gameConfig.AreaHeight)) break;
+
                 Utilities.DrawSnake(snake);
-
-                if (Utilities.CollisionWithBoundaries(snake, gameConfig.AreaWidth, gameConfig.AreaHeight)) break;
-
                 Utilities.CheckFoodEaten(snake, ref food, ref scores);
+
+                Console.SetCursorPosition(0, 0);
                 Thread.Sleep(100);
             }
 
