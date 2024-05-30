@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using SnakeGame.Models;
 
 namespace SnakeGame.Helpers
 {
@@ -24,16 +24,16 @@ namespace SnakeGame.Helpers
             for (int i = 0; i < arenaWidth; i++)
             {
                 Console.SetCursorPosition(i, 0);
-                Console.Write("■");
+                Console.Write("█");
                 Console.SetCursorPosition(i, arenaHeight - 1);
-                Console.Write("■");
+                Console.Write("█");
             }
             for (int i = 0; i < arenaHeight; i++)
             {
                 Console.SetCursorPosition(0, i);
-                Console.Write("■");
+                Console.Write("██");
                 Console.SetCursorPosition(arenaWidth - 1, i);
-                Console.Write("■");
+                Console.Write("██");
             }
         }
     }

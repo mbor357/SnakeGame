@@ -1,4 +1,4 @@
-﻿namespace SnakeGame.Helpers
+﻿namespace SnakeGame.Models
 {
     public class Option
     {
