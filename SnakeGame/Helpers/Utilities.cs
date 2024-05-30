@@ -67,5 +67,35 @@ namespace SnakeGame.Helpers
 
             snake.SnakeBody.Insert(0, newHeadPosition);
         }
+
+        public static void DrawScores(int scores)
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.Write("Punkty: " + scores);
+        }
+
+        public static Pixel DrawFood(Snake snake, int arenaHeight, int arenaWidth)
+        {
+            Random random = new Random();
+
+            Pixel food = new Pixel();
+
+            food.X = random.Next(2, arenaWidth);
+            food.Y = random.Next(1, arenaHeight);
+
+            while (snake.SnakeBody.Any(x => x == food))
+            {
+                food.X = random.Next(0, arenaWidth);
+                food.Y = random.Next(0, arenaHeight);
+            }
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(food.X, food.Y);
+            Console.Write("██");
+
+            Console.ResetColor();
+
+            return new Pixel();
+        }
     }
 }
